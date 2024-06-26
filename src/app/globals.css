@@ -33,3 +33,17 @@ body {
 	font-size: 16px;
 	line-height: 1;
 }
+
+:root {
+	body {
+		background-color: #fff;
+		color: #121212;
+	}
+}
+
+[data-theme="dark"] {
+	body {
+		background-color: #121212;
+		color: #fff;
+	}
+}

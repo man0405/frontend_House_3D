@@ -1,54 +1,24 @@
 "use client";
-import { createTheme, PaletteMode, ThemeProvider } from "@mui/material";
-import { amber, deepOrange, grey } from "@mui/material/colors";
-import React from "react";
-import { useAppSelector } from "../redux/hooks";
+import { ThemeProvider } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import CssBaseline from "@mui/material/CssBaseline";
-import createCache from "@emotion/cache";
-import { useServerInsertedHTML } from "next/navigation";
-import { CacheProvider } from "@emotion/react";
 
-const getDesignTokens = (mode: PaletteMode) => ({
-	palette: {
-		mode,
-		...(mode === "light"
-			? {
-					// palette values for light mode
-					primary: amber,
-					divider: amber[200],
-					text: {
-						primary: grey[900],
-						secondary: grey[800],
-					},
-			  }
-			: {
-					// palette values for dark mode
-					primary: deepOrange,
-					divider: deepOrange[700],
-					background: {
-						default: deepOrange[900],
-						paper: deepOrange[900],
-					},
-					text: {
-						primary: "#fff",
-						secondary: grey[500],
-					},
-			  }),
-	},
-});
+import { darkTheme, lightTheme, BaseTheme } from "./theme";
 
 export default function ThemeProviderApp({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
-	const appSelection = useAppSelector((state) => state.theme.mode);
+	const { resolvedTheme } = useTheme();
+	const [currentTheme, setCurrentTheme] = useState(darkTheme);
 
-	// Update the theme only if the mode changes
-	const theme = React.useMemo(
-		() => createTheme(getDesignTokens(appSelection)),
-		[appSelection]
-	);
+	useEffect(() => {
+		resolvedTheme === "light"
+			? setCurrentTheme(lightTheme)
+			: setCurrentTheme(darkTheme);
+	}, [resolvedTheme]);
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={{ ...currentTheme, ...BaseTheme }}>
 			<CssBaseline />
 			{children}
 		</ThemeProvider>

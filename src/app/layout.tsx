@@ -1,11 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
 import ThemeProviderApp from "@/libs/theme/ThemeProvider";
 import StoreProvider from "@/libs/redux/StoreProvider";
 
 import React from "react";
+import RootStyleRegistry from "@/libs/theme/RootStyleRegistry";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -18,12 +18,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning={true}>
 			<body>
 				<StoreProvider>
-					<AppRouterCacheProvider options={{ key: "css" }}>
-						<ThemeProviderApp>{children}</ThemeProviderApp>
-					</AppRouterCacheProvider>
+					<RootStyleRegistry>{children}</RootStyleRegistry>
 				</StoreProvider>
 			</body>
 		</html>
