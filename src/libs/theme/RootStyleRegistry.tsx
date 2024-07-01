@@ -1,7 +1,7 @@
 import React from "react";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ThemeProvider as PreferredThemeProvider } from "next-themes";
-import ThemeProvider from "./ThemeProvider";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import ThemeProviderApp from "./ThemeProvider";
 
 export default function RootStyleRegistry({
 	children,
@@ -11,7 +11,7 @@ export default function RootStyleRegistry({
 	return (
 		<PreferredThemeProvider>
 			<AntdRegistry>
-				<ThemeProvider>{children}</ThemeProvider>
+				<ThemeProviderApp>{children}</ThemeProviderApp>
 			</AntdRegistry>
 		</PreferredThemeProvider>
 	);

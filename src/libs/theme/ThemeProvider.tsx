@@ -3,11 +3,9 @@ import { ConfigProvider, theme } from "antd";
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 
-export default function ThemeProvider({
+export default function ThemeProviderApp({
 	children,
-}: {
-	children: React.ReactNode;
-}) {
+}: Readonly<{ children: React.ReactNode }>) {
 	const { resolvedTheme } = useTheme();
 	const [currentTheme, setCurrentTheme] = useState(true);
 
