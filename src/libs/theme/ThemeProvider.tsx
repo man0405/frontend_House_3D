@@ -1,26 +1,26 @@
 "use client";
-import { ThemeProvider } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { ConfigProvider, theme } from "antd";
 import { useTheme } from "next-themes";
-import CssBaseline from "@mui/material/CssBaseline";
+import React, { useEffect, useState } from "react";
 
-import { darkTheme, lightTheme, BaseTheme } from "./theme";
-
-export default function ThemeProviderApp({
+export default function ThemeProvider({
 	children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: {
+	children: React.ReactNode;
+}) {
 	const { resolvedTheme } = useTheme();
-	const [currentTheme, setCurrentTheme] = useState(darkTheme);
+	const [currentTheme, setCurrentTheme] = useState(true);
 
 	useEffect(() => {
-		resolvedTheme === "light"
-			? setCurrentTheme(lightTheme)
-			: setCurrentTheme(darkTheme);
+		resolvedTheme === "light" ? setCurrentTheme(false) : setCurrentTheme(true);
 	}, [resolvedTheme]);
 	return (
-		<ThemeProvider theme={{ ...currentTheme, ...BaseTheme }}>
-			<CssBaseline />
+		<ConfigProvider
+			theme={{
+				algorithm: currentTheme ? theme.darkAlgorithm : theme.defaultAlgorithm,
+			}}
+		>
 			{children}
-		</ThemeProvider>
+		</ConfigProvider>
 	);
 }

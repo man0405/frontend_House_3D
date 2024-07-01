@@ -1,9 +1,7 @@
-"use client";
-
-import { ThemeProvider as PreferredThemeProvider } from "next-themes";
 import React from "react";
-import ThemeProviderApp from "./ThemeProvider";
-import AppRouterCacheProvider from "@mui/material-nextjs/v13-appRouter/appRouterV13";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { ThemeProvider as PreferredThemeProvider } from "next-themes";
+import ThemeProvider from "./ThemeProvider";
 
 export default function RootStyleRegistry({
 	children,
@@ -12,9 +10,9 @@ export default function RootStyleRegistry({
 }) {
 	return (
 		<PreferredThemeProvider>
-			<AppRouterCacheProvider>
-				<ThemeProviderApp>{children}</ThemeProviderApp>
-			</AppRouterCacheProvider>
+			<AntdRegistry>
+				<ThemeProvider>{children}</ThemeProvider>
+			</AntdRegistry>
 		</PreferredThemeProvider>
 	);
 }
