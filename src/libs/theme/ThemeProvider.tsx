@@ -16,6 +16,10 @@ export default function ThemeProviderApp({
 		<ConfigProvider
 			theme={{
 				algorithm: currentTheme ? theme.darkAlgorithm : theme.defaultAlgorithm,
+				token: {
+					colorPrimary: "#c4564a",
+				},
+				components: {},
 			}}
 		>
 			{children}
