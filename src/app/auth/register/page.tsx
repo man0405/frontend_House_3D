@@ -1,6 +1,8 @@
 "use client";
 
+import FinishRegister from "@/components/Register/FinishRegister";
 import Register from "@/components/Register/Register";
+import RegisterInformation from "@/components/Register/RegisterInformation";
 import { Col, Row, Image, Steps, Flex } from "antd";
 
 import React, { useState } from "react";
@@ -24,7 +26,8 @@ export default function RegisterPage() {
 	console.log("RegisterPage ~ formData:", formData, current);
 
 	const formDataHandler = (value: {}) => {
-		setFormData((prev) => ({ ...prev, value }));
+		console.log(value);
+		setFormData((prev) => ({ ...value, ...prev }));
 	};
 	const next = () => {
 		setCurrent(current + 1);
@@ -67,7 +70,13 @@ export default function RegisterPage() {
 						{current === 0 && (
 							<Register formDataHandler={formDataHandler} next={next} />
 						)}
-						{current === 1 && <>page 2</>}
+						{current === 1 && (
+							<RegisterInformation
+								formDataHandler={formDataHandler}
+								next={next}
+							/>
+						)}
+						{current === 2 && <FinishRegister />}
 					</Flex>
 				</Flex>
 			</Col>
