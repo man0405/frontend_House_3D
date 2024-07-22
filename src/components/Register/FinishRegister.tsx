@@ -1,4 +1,3 @@
-"use client";
 import { Button, Result } from "antd";
 
 import { useRouter } from "next/navigation";
@@ -16,7 +15,7 @@ export default function FinishRegister() {
 					type="primary"
 					key="console"
 					onClick={() => {
-						router.replace("auth/login");
+						router.replace("/login");
 					}}
 				>
 					Go To Login

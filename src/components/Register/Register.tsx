@@ -1,5 +1,3 @@
-"use client";
-
 import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
 import Image from "next/image";
 import React, { use, useEffect, useState } from "react";
@@ -49,8 +47,8 @@ export default function Register({
 			<Text type="secondary" style={{ marginBottom: 52 }} strong>
 				Enter your credentials to access your account
 			</Text>
-			<Row wrap={false} style={{ marginBottom: 24 }}>
-				<Col style={{ width: "100%" }}>
+			<Row wrap={true} style={{ marginBottom: 24 }} gutter={[24, 24]}>
+				<Col xs={24} sm={24} md={24} xl={12} xxl={12}>
 					<ButtonCustom
 						primaryColor="#cd3838"
 						size="large"
@@ -60,7 +58,7 @@ export default function Register({
 						Login with Google
 					</ButtonCustom>
 				</Col>
-				<Col offset={1} style={{ width: "100%" }}>
+				<Col xs={24} sm={24} md={24} xl={12} xxl={12}>
 					<ButtonCustom
 						primaryColor="#2b4db5"
 						size="large"
