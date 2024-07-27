@@ -9,20 +9,25 @@ import {
   Col,
   Typography,
   Divider,
-  Space,
   Image,
   ConfigProvider,
+  theme,
+  Flex,
+  Layout,
 } from "antd";
+import Title from "antd/es/typography/Title";
 import StyleSheet from "react";
 import { GoogleOutlined, FacebookFilled } from "@ant-design/icons";
+import { useTheme } from "next-themes";
+import Link from "next/link";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
+const { useToken } = theme;
 
 export default function SignupForm() {
   const [form] = Form.useForm();
-  const [google, setGoogle] = useState(false);
-  const [facebook, setFacebook] = useState(false);
-
+  const { resolvedTheme, setTheme } = useTheme();
+  const { token } = useToken();
   return (
     <div
       style={{
@@ -32,18 +37,40 @@ export default function SignupForm() {
         background: "#A9C3D6",
       }}
     >
-      <div style={{ width: "80%" }}>
+      <Flex
+        style={{
+          width: "80%",
+          background: token.colorPrimaryBg,
+          // padding: "2rem",
+          justifyContent: "center",
+        }}
+      >
         <Row
+          gutter={30}
           style={{
             minHeight: "100vh",
+
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "white",
           }}
         >
-          <Col xs={24} md={8} style={{}}>
+          <Col
+            xs={24}
+            sm={24}
+            md={24}
+            lg={11}
+            xl={11}
+            xxl={11}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
             <Title level={2}>Sign In</Title>
             <Text>Kindly fill in your details to be a part of the camp</Text>
+
             <Form
               layout="vertical"
               form={form}
@@ -72,7 +99,7 @@ export default function SignupForm() {
                 />
               </Form.Item>
               <Form.Item
-                label={<span style={{ fontWeight: "bold" }}>Password</span>}
+                label={<label style={{ fontWeight: "bold" }}>Password</label>}
                 name="password"
                 rules={[{ message: "Please create a password" }]}
               >
@@ -100,10 +127,14 @@ export default function SignupForm() {
                 ]}
                 style={{ borderRadius: "10px", overflow: "hidden" }}
               >
-                <Checkbox>Remeber my account</Checkbox>
-                <a className="login-form-forgot" href="">
-                  Forgot password
-                </a>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <Checkbox>Remeber my account</Checkbox>
+                  <Link className="login-form-forgot" href="">
+                    Forgot password
+                  </Link>
+                </div>
               </Form.Item>
               <Form.Item style={{ borderRadius: "10px", overflow: "hidden" }}>
                 <Button
@@ -150,10 +181,8 @@ export default function SignupForm() {
                     padding: "20px",
                     borderRadius: "10px",
                     border: "none",
-                    backgroundColor: google ? "#f1f1f1" : "white",
+                    transition: "background-color 0.3s ease",
                   }}
-                  onMouseEnter={() => setGoogle(true)}
-                  onMouseLeave={() => setGoogle(false)}
                 >
                   <GoogleOutlined />
                   Log in with Google
@@ -166,25 +195,35 @@ export default function SignupForm() {
                   borderRadius: "10px",
                   border: "none",
                   transition: "background-color 0.3s ease",
-                  backgroundColor: facebook ? "#d0d0d0" : "white",
                 }}
-                onMouseEnter={() => setFacebook(true)}
-                onMouseLeave={() => setFacebook(false)}
               >
                 <FacebookFilled />
                 Log in with Facebook
               </Button>
             </Form>
           </Col>
-          <Col md={12} style={{ padding: "20px" }}>
-            <Image
-              width={"100%"}
-              src="https://images.unsplash.com/photo-1633098205447-de387b769109?q=80&w=2097&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              style={{ borderRadius: "20px" }}
-            />
+          <Col
+            xs={0}
+            sm={0}
+            md={0}
+            lg={11}
+            xl={11}
+            xxl={{ flex: "auto" }}
+            style={{}}
+          >
+            <Flex align="center">
+              <Image
+                style={{
+                  minHeight: "40rem",
+                }}
+                src="https://images.unsplash.com/photo-1633098205447-de387b769109?q=80&w=2097&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                preview={false}
+                height={"100%"}
+              />
+            </Flex>
           </Col>
         </Row>
-      </div>
+      </Flex>
     </div>
   );
 }
