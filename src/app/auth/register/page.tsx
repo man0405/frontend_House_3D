@@ -44,10 +44,13 @@ export default function RegisterPage() {
 			</Col>
 			<Col xs={24} sm={24} md={24} lg={10} xl={10}>
 				<Row
-					style={{ width: "100%", height: "100vh", paddingInline: "20" }}
-					// align={{
-					// 	xs: "middle",
-					// }}
+					style={{
+						width: "100%",
+						height: "100vh",
+						paddingInline: "20",
+						alignItems: "baseline",
+						justifyContent: "center",
+					}}
 					justify={{
 						xs: "center",
 					}}
@@ -61,7 +64,7 @@ export default function RegisterPage() {
 							items={items}
 						/>
 					</Col>
-					<Col xs={22}>
+					<Col xs={22} style={{ height: "100%" }}>
 						<Flex
 							vertical
 							justify="center"
