@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  nextapp:
+    container_name: frontend_house_3d
+    image: frontend_house_3d
+    build:
+      context: .
+      dockerfile: deployment/Dockerfile
+    ports:
+      - "3000:3000"
