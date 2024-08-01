@@ -1,39 +1,50 @@
-"use client";
-import { Button, Card, ConfigProvider, ThemeConfig } from "antd";
-import { theme } from "antd";
-import { useTheme } from "next-themes";
+import FooterCustom from "@/components/Layout/Footer";
+import { Layout, theme } from "antd";
+import { Content, Header } from "antd/es/layout/layout";
+import Sider from "antd/es/layout/Sider";
 
-const { getDesignToken, useToken } = theme;
+const headerStyle: React.CSSProperties = {
+	textAlign: "center",
+	color: "#fff",
+	height: 64,
+	paddingInline: 48,
+	lineHeight: "64px",
+	backgroundColor: "#4096ff",
+};
 
-const config: ThemeConfig = {
-  token: {
-    colorPrimary: "#30a082",
-  },
+const contentStyle: React.CSSProperties = {
+	textAlign: "center",
+	minHeight: 120,
+	lineHeight: "120px",
+	color: "#fff",
+	backgroundColor: "#0958d9",
+};
+
+const siderStyle: React.CSSProperties = {
+	textAlign: "center",
+	lineHeight: "120px",
+	color: "#fff",
+	backgroundColor: "#1677ff",
+};
+
+const layoutStyle = {
+	borderRadius: 8,
+	overflow: "hidden",
+	// width: "calc(50% - 8px)",
+	// maxWidth: "calc(50% - 8px)",
 };
 
 export default function Home() {
-  const { resolvedTheme, setTheme } = useTheme();
-  return (
-    <ConfigProvider
-      theme={{
-        algorithm:
-          resolvedTheme === "dark"
-            ? theme.darkAlgorithm
-            : theme.compactAlgorithm,
-      }}
-    >
-      <main>
-        <Card style={{ width: "max-content" }}>
-          <Button
-            onClick={() => {
-              setTheme(resolvedTheme === "light" ? "dark" : "light");
-              console.log("Home ~ resolvedTheme:", resolvedTheme);
-            }}
-          >
-            {resolvedTheme === "light" ? "Dark" : "Light"}
-          </Button>
-        </Card>
-      </main>
-    </ConfigProvider>
-  );
+	return (
+		<Layout style={layoutStyle}>
+			<Header style={headerStyle}>Header</Header>
+			<Layout>
+				<Content style={contentStyle}>Content</Content>
+				<Sider width="25%" style={siderStyle}>
+					Sider
+				</Sider>
+			</Layout>
+			<FooterCustom />
+		</Layout>
+	);
 }
