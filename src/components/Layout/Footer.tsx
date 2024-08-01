@@ -16,7 +16,7 @@ import Link from "antd/es/typography/Link";
 export default function FooterCustom() {
 	return (
 		<Footer>
-			<Flex justify="space-around">
+			<Flex justify="space-between" wrap={true} gap="middle">
 				<Space direction="vertical">
 					<TitleCustom level={5} type="secondary">
 						6111 Brynhurst Ave, Los Angeles, CA 90043, Hoa Kỳ
